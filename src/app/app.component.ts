@@ -18,9 +18,7 @@ export class AppComponent {
   }
 
   getPosts() {
-
     this.posts = this.http.get(this.ROOT_URL );
-    console.log(this.posts)
   }
 
 }

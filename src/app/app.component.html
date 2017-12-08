@@ -1,13 +1,24 @@
 <h1>Angular</h1>
-<!--<button (click)="getPosts()">Dane</button>-->
+<button (click)="getPosts()">Dane</button>
+
 <div>
-    <input type="text" #term (keyup)="search(term.value)" />
-  <ul>
-    <li *ngFor="let post of posts | async">
-      tytuł{{post.title}} <br> 
-      autor:{{post.author}}<br>
-      isbn:{{post.isbn}}<br>
-    
-    </li>
-  </ul>
+  <br>
+  <input type="text" #term (keyup)="search(term.value)" />
+
+  <div class="container">
+    <div class="row">
+      <div id="liner" *ngFor="let post of posts | async" class="col-3 card">
+          <div class="card-block">
+              <img class="card-img-top" src={{post.cover}} alt="Card image cap">
+              <div class="card-body">
+                <h6 class="card-title">{{post.title}}</h6>
+                <p class="card-text">{{post.author}}</p>
+                <p class="card-text">{{post.isbn}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div> 
+      </div>
+      
+    </div>
+  </div>
 </div>
