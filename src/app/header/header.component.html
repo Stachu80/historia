@@ -1,0 +1,15 @@
+<div id="header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div id="bookstore" class="col">
+        KSIĘGARNIA
+      </div>
+      <div class="col">
+        <input type="text" #term (keyup)="search(term.value)"/>
+
+        <button (click)="getPosts()" type="submit">szukaj</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="greyLine"></div>

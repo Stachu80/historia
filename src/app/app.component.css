@@ -1,11 +1,15 @@
-.card-block{
+.app_main {
+  background-color: #ffffff;
+  padding: 20px;
+}
 
-    /*background-color:  #793092; */
+
+
+#liner {
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+  min-width: 200px;
+  min-height: 100px;
+  /*background-color: #769230;*/
 }
-#liner{
-    padding: 5px 5px 5px 5px;
-    margin: 5px 5px 5px 5px;
-    min-width: 200px;
-    min-height: 100px;
-    /*background-color: #769230;*/
-}
+
