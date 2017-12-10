@@ -1,5 +1,5 @@
 #header {
-  background-color: rgba(186, 0, 11, 0.87);
+  background-color: #ffffff;
 }
 
 .container {
@@ -13,8 +13,8 @@
 }
 
 #bookstore {
-  color: #ffffff;
+  color: #faa200;
   font-family: "Trebuchet MS";
-  font-size: 40px;
-  padding: 20px;
+  font-size: 30px;
+  padding: 40px;
 }
