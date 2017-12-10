@@ -5,8 +5,6 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class HttpConnectionService {
-
-
   posts: any;
   private newPost = new Subject<Object>();
   readonly ROOT_URL = 'https://gwo.pl/booksApi/v1/search?query=historia';

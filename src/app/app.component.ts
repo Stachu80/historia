@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-
   searchText(text: string) {
     this.search = text;
     if (text.length >= 3) {
