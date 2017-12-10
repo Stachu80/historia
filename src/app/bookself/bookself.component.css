@@ -1,0 +1,19 @@
+.app_main {
+  background-color: #ffffff;
+  padding: 20px;
+}
+.cover{
+  margin: 5px;
+}
+.book-card {
+ padding: 10px;
+  margin-bottom: 10px;
+  min-width: 300px;
+  min-height: 100px;
+  background-color: #ffffff;
+  border-radius:10px;
+  border: #999 solid 1px;
+  border-radius:10px;
+
+}
+
