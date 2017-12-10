@@ -43,12 +43,19 @@ export class AppComponent implements OnInit {
   }
 
   searchText(text: string) {
+    console.log(text + 'search' + this.posts.length);
     this.search = text;
-    if (text.length > 3) {
-      this.postsList = this.posts.filter(tag => {
+    if (text.length >= 3) {
+      this.postsList = this.posts;
+      this.postsList = this.postsList.filter(tag => {
 
         return tag.author.indexOf(text) >= 0;
       });
+      if (this.postsList.length === 0) {
+        this.postsList = this.posts;
+      }
+
+
     } else {
       this.postsList = this.posts;
     }
@@ -56,12 +63,12 @@ export class AppComponent implements OnInit {
   }
 
   setPage(page: number) {
+    console.log('setPage');
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
 
     this.pager = this.pagerService.getPager(this.postsList.length, page);
     this.pagedItems = this.postsList.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    console.log('this.postsList' + this.pagedItems);
   }
 }

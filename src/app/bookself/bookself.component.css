@@ -3,6 +3,9 @@
   padding: 20px;
 }
 
+.container{
+  min-height: 500px;
+}
 .cover {
   margin: 5px;
 }
