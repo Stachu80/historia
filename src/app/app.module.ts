@@ -9,6 +9,7 @@ import {BookselfComponent} from './bookself/bookself.component';
 import {PagerService} from './services';
 import {SearchFilter} from 'ng4-pipes/src/app/pipes/searchFilter';
 import {FormsModule} from '@angular/forms';
+import {HttpConnectionService} from './services/http-connection.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [PagerService],
+  providers: [PagerService, HttpConnectionService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

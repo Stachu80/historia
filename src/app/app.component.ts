@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {PagerService} from './services';
 import 'rxjs/add/operator/map';
+import {HttpConnectionService} from './services/http-connection.service';
 
 @Component({
   selector: 'app-root',
@@ -9,41 +10,25 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
   posts: any;
   postsList: any;
   pager: any = {};
   pagedItems: any;
   search: string;
-  readonly ROOT_URL = 'https://gwo.pl/booksApi/v1/search?query=historia';
 
-  constructor(private http: HttpClient, private pagerService: PagerService) {
+  constructor(private pagerService: PagerService, private httpConnect: HttpConnectionService) {
   }
 
   ngOnInit() {
-    try {
-      this.http.get(this.ROOT_URL).subscribe(data => {
-        this.posts = data;
-        this.postsList = data;
-        this.setPage(1);
-      });
-    } catch (e) {
-      console.log(e.status);
-    }
-
-  }
-
-  clickButton() {
-    this.http.get(this.ROOT_URL).subscribe(data => {
-      this.posts = data;
+    this.httpConnect.getPost().subscribe(data => {
       this.postsList = data;
+      this.posts = data;
       this.setPage(1);
     });
-
   }
 
+
   searchText(text: string) {
-    console.log(text + 'search' + this.posts.length);
     this.search = text;
     if (text.length >= 3) {
       this.postsList = this.posts;
@@ -55,7 +40,6 @@ export class AppComponent implements OnInit {
         this.postsList = this.posts;
       }
 
-
     } else {
       this.postsList = this.posts;
     }
@@ -63,7 +47,6 @@ export class AppComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log('setPage');
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
