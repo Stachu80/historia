@@ -7,6 +7,8 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {BookselfComponent} from './bookself/bookself.component';
 import {PagerService} from './services';
+import {SearchFilter} from 'ng4-pipes/src/app/pipes/searchFilter';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import {PagerService} from './services';
     BookselfComponent,
     HeaderComponent,
     FooterComponent,
+    SearchFilter,
 
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [PagerService],
   bootstrap: [AppComponent]
