@@ -1,9 +1,14 @@
-#header{
- background-color: #cb150f;
+#header {
+  background-color: rgba(186, 0, 11, 0.87);
 
 }
+.color1{
+  color: aqua;
+}
 
-
+#lineUnderHeader{
+  min-height:10px;
+}
 #bookstore{
   color: #ffffff;
   font-family: "Trebuchet MS";
