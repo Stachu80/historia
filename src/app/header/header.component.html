@@ -5,9 +5,8 @@
         KSIĘGARNIA
       </div>
       <div class="col">
-        <input type="text" #term (keyup)="search(term.value)"/>
-
-        <button (click)="getPosts()" type="submit">szukaj</button>
+        <input type="text" (keyup)="onNameKeyUp($event)"/>
+        <button (click)="getPosts($event)" type="submit">szukaj</button>
       </div>
     </div>
   </div>

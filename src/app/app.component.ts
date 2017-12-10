@@ -1,25 +1,49 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+
+import {PagerService} from './services';
+import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
-  // readonly ROOT_URL = 'https://jsonplaceholder.typicode.com'
   posts: any;
+  pager: any = {};
+  pagedItems: any;
+
   readonly ROOT_URL = 'https://gwo.pl/booksApi/v1/search?query=historia';
 
-
-  constructor(private http: HttpClient) {
-    this.posts = this.http.get(this.ROOT_URL);
-    //this.posts =[{"title":"Historia 4. Podr\u00f3\u017ce w czasie. Podr\u0119cznik. Nowa szko\u0142a podstawowa","author":"T. Ma\u0142kowski","isbn":"9788374209373","men":"829\/1\/2017","pages_count":160,"levels":[{"school":"szko\u0142a podstawowa","class":"klasa 4"}],"subject":"historia","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/1\/1271.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/1271,historia-4-podroze-w-czasie-podrecznik-nowa-szkola-podstawowa"},{"title":"Historia 7. Podr\u00f3\u017ce w czasie. Podr\u0119cznik. Nowa szko\u0142a podstawowa","author":"T. Ma\u0142kowski","isbn":"9788374207409","men":"829\/4\/2017","pages_count":256,"levels":[{"school":"szko\u0142a podstawowa","class":"klasa 7"}],"subject":"historia","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/1\/1272.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/1272,historia-7-podroze-w-czasie-podrecznik-nowa-szkola-podstawowa"},{"title":"Historia i spo\u0142ecze\u0144stwo 5. Wehiku\u0142 czasu. Podr\u0119cznik. Nowa wersja","author":"T. Ma\u0142kowski","isbn":"9788374204217","men":"428\/2\/2013\/2015","pages_count":192,"levels":[{"school":"szko\u0142a podstawowa","class":"klasa 5"}],"subject":"historia i spo\u0142ecze\u0144stwo","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/0\/919.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/919,historia-i-spoleczenstwo-5-wehikul-czasu-podrecznik-nowa-wersja"},{"title":"Historia i spo\u0142ecze\u0144stwo 6. Wehiku\u0142 czasu. Podr\u0119cznik. Nowa wersja","author":"T. Ma\u0142kowski","isbn":"9788374204651","men":"428\/3\/2014\/2016","pages_count":264,"levels":[{"school":"szko\u0142a podstawowa","class":"klasa 6"}],"subject":"historia i spo\u0142ecze\u0144stwo","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/1\/1225.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/1225,historia-i-spoleczenstwo-6-wehikul-czasu-podrecznik-nowa-wersja"},{"title":"Historia I. Podr\u00f3\u017ce w czasie. Podr\u0119cznik dla liceum i technikum. Cz\u0119\u015b\u0107 1. Od czas\u00f3w najdawniejszych do \u015bredniowiecza","author":"M. G\u0142adysz, \u0141. Skupny","isbn":"9788388881084","men":"172\/02","pages_count":208,"levels":[{"school":"szko\u0142a \u015brednia","class":"klasa 1"}],"subject":"historia","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/0\/96.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/96,historia-i-podroze-w-czasie-podrecznik-dla-liceum-i-technikum-czesc-1-od-czasow-najdawniejszych-do-s"},{"title":"Historia I. Podr\u00f3\u017ce w czasie. Podr\u0119cznik dla liceum i technikum. Cz\u0119\u015b\u0107 2. Od \u015bredniowiecza do nowo\u017cytno\u015bci","author":"M. G\u0142adysz","isbn":"9788388881091","men":"26\/03","pages_count":256,"levels":[{"school":"szko\u0142a \u015brednia","class":"klasa 1"}],"subject":"historia","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/0\/98.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/98,historia-i-podroze-w-czasie-podrecznik-dla-liceum-i-technikum-czesc-2-od-sredniowiecza-do-nowozytnos"},{"title":"Historia I. Podr\u00f3\u017ce w czasie. Podr\u0119cznik. Nowa wersja. Wydanie 2014","author":"T. Ma\u0142kowski, J. Rze\u015bniowiecki","isbn":"9788374201735","men":"158\/1\/2009\/2015","pages_count":256,"levels":[{"school":"gimnazjum","class":"klasa 1"}],"subject":"historia","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/0\/692.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/692,historia-i-podroze-w-czasie-podrecznik-nowa-wersja-wydanie-2014"},{"title":"Historia II. Podr\u00f3\u017ce w czasie. Podr\u0119cznik dla liceum i technikum. Cz\u0119\u015b\u0107 1. Od o\u015bwiecenia do 1918 roku","author":"M. G\u0142adysz","isbn":"9788388881589","men":"341\/03","pages_count":264,"levels":[{"school":"szko\u0142a \u015brednia","class":"klasa 2"}],"subject":"historia","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/0\/145.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/145,historia-ii-podroze-w-czasie-podrecznik-dla-liceum-i-technikum-czesc-1-od-oswiecenia-do-1918-roku"},{"title":"Historia II. Podr\u00f3\u017ce w czasie. Podr\u0119cznik. Nowa wersja","author":"T. Ma\u0142kowski, J. Rze\u015bniowiecki","isbn":"9788374202329","men":"158\/2\/2010\/2016","pages_count":280,"levels":[{"school":"gimnazjum","class":"klasa 2"}],"subject":"historia","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/0\/925.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/925,historia-ii-podroze-w-czasie-podrecznik-nowa-wersja"},{"title":"Historia III. Podr\u00f3\u017ce w czasie. Podr\u0119cznik + multipodr\u0119cznik (roczny dost\u0119p)","author":"T. Ma\u0142kowski, J. Rze\u015bniowiecki","isbn":"9788374202534","men":"158\/3\/2011","pages_count":264,"levels":[{"school":"gimnazjum","class":"klasa 3"}],"subject":"historia","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/0\/587.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/587,historia-iii-podroze-w-czasie-podrecznik-multipodrecznik-roczny-dostep"},{"title":"Historia III. Podr\u00f3\u017ce w czasie. Podr\u0119cznik. Nowa wersja","author":"T. Ma\u0142kowski, J. Rze\u015bniowiecki","isbn":"9788374202534","men":"158\/3\/2011\/2016","pages_count":264,"levels":[{"school":"gimnazjum","class":"klasa 3"}],"subject":"historia","type":"podr\u0119cznik","cover":"https:\/\/files.gwo.pl\/covers\/books\/1\/1224.jpg","url":"https:\/\/gwo.pl\/ksiegarnia\/ksiazka\/1224,historia-iii-podroze-w-czasie-podrecznik-nowa-wersja"}]
+  constructor(private http: HttpClient, private pagerService: PagerService) {
   }
 
-  getPosts() {
-    //this.posts = this.http.get(this.ROOT_URL);
+
+  ngOnInit() {
+  }
+
+  clickButton() {
+    this.http.get(this.ROOT_URL).subscribe(data => {
+      this.posts = data;
+      this.setPage(1);
+    });
+
+  }
+
+  searchText(text: string) {
+    console.log(text);
+  }
+
+  setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
+      return;
+    }
+
+    this.pager = this.pagerService.getPager(this.posts.length, page);
+    this.pagedItems = this.posts.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
 }
