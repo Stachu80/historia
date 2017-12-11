@@ -10,18 +10,23 @@ export class HttpConnectionService {
   readonly ROOT_URL = 'https://gwo.pl/booksApi/v1/search?query=historia';
 
   constructor(private http: HttpClient) {
-    try {
-      this.http.get(this.ROOT_URL).subscribe(data => {
-        this.posts = data;
-        this.newPost.next(this.posts);
-      });
-    } catch (e) {
-      console.log(e.status);
-    }
   }
 
-  getPost(): Observable<Object> {
-    return this.newPost.asObservable();
+
+  searchEngine(text: string): Observable<Array<Book>> {
+    console.log('https://gwo.pl/booksApi/v1/search?query=' + encodeURIComponent(text))
+    return this.http.get<Array<Book>>('https://gwo.pl/booksApi/v1/search?query=' + encodeURIComponent(text));
+
   }
 
 }
+
+export interface Book {
+  name ?: string;
+  cover ?: string;
+  title ?: string;
+  author ?: string;
+  isbn ?: string;
+  url ?: string;
+}
+

@@ -1,9 +1,9 @@
-<app-header (eventTask)="searchText($event)" (eventTask1)="clickButton()"></app-header>
+<app-header (eventTask)="searchText($event)" ></app-header>
 <app-bookself [bookPost]="pagedItems"></app-bookself>
 <div>
   <div class="container">
     <div class="text-center">
-      <div *ngFor="let item of pagedItems">{{item.name}}</div>
+      <div *ngFor="let item of   this.pagedItems">{{item.name}}</div>
       <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
         <li [ngClass]="{disabled:pager.currentPage === 1}">
           <a (click)="setPage(1)">Pierwszy</a>
