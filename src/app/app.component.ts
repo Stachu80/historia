@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {PagerService} from './services';
 import 'rxjs/add/operator/map';
-import {Book, HttpConnectionService} from './services/http-connection.service';
-import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {SearchService} from './services/search.service';
 
@@ -22,29 +19,30 @@ export class AppComponent implements OnInit {
   searchTerm$ = new Subject<string>();
   providers: [SearchService];
 
-  constructor(private pagerService: PagerService, private httpConnect: HttpConnectionService, private searchService: SearchService) {
+  constructor(private pagerService: PagerService, private searchService: SearchService) {
     this.searchService.search(this.searchTerm$)
       .subscribe(data => {
-        console.log('result' + data);
+        console.log('result11' + data);
         this.postsList = data;
         this.setPage(1);
       });
   }
 
-  allPost$: Observable<Array<Book>>;
 
   ngOnInit() {
   }
 
-  searchText(text: string) {
-    this.search = text;
-    if (text.length >= 3) {
-      this.allPost$ = this.httpConnect.searchEngine(text);
-      this.allPost$.subscribe(data => {
-        this.postsList = data;
-        this.setPage(1);
-      });
-    }
+  searchText(text) {
+    console.log(text)
+    // this.searchTerm$.next($event.target.value);
+    /* this.search = text;
+     if (text.length >= 3) {
+       this.allPost$ = this.httpConnect.searchEngine(text);
+       this.allPost$.subscribe(data => {
+         this.postsList = data;
+         this.setPage(1);
+       });
+     }*/
   }
 
 

@@ -1,4 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {SearchService} from '../services/search.service';
+import {PagerService} from '../services';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +9,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  searchTerm$ = new Subject<string>();
 
-  constructor() {
+  constructor(private searchService: SearchService) {
+    this.searchService.search(this.searchTerm$)
+      .subscribe(data => {
+      });
   }
 
   @Output()
@@ -16,9 +23,6 @@ export class HeaderComponent implements OnInit {
   @Output()
   eventTask1 = new EventEmitter();
 
-
-  isHidden = false;
-  colorHeader = 'color1';
 
   onNameKeyUp(event) {
     this.eventTask.emit(event.target.value);

@@ -1,8 +1,7 @@
 <app-header (eventTask)="searchText($event)" ></app-header>
 <app-bookself [bookPost]="pagedItems"></app-bookself>
 
-<input
-  (keyup)="searchTerm$.next($event.target.value)">
+<input (keyup)="searchTerm$.next($event.target.value)">
 
 <ul *ngIf="results">
   <li *ngFor="let result of results | slice:0:9">
