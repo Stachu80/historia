@@ -1,8 +1,17 @@
 #footer{
-  background-color: #9e2f35;
+  background-color: #cb272a;
   padding: 50px ;
   min-height:300px;
 }
 #lineUnderHeader{
   min-height:10px;
+}
+
+.col{
+  display: flex;
+  justify-content: center;
+  border-bottom: 10px;
+  color: #ffffff;
+  font-family: "Trebuchet MS";
+  font-size: 20px;
 }

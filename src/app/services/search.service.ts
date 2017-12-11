@@ -24,6 +24,5 @@ export class SearchService {
     return this.http
       .get(this.baseUrl + term)
       .map(res => res.json());
-
   }
 }
