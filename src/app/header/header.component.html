@@ -6,7 +6,7 @@
         KSIĘGARNIA
       </div>
       <div class="col">
-        <input type="text" (keyup)="onNameKeyUp($event)"/>
+        <input type="text"  (keyup)="onNameKeyUp($event)" ngModel pattern="[A-Za-z]{5}"/>
       </div>
     </div>
   </div>
