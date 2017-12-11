@@ -4,6 +4,8 @@ import {PagerService} from './services';
 import 'rxjs/add/operator/map';
 import {Book, HttpConnectionService} from './services/http-connection.service';
 import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
+import {SearchService} from './services/search.service';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +18,17 @@ export class AppComponent implements OnInit {
   pager: any = {};
   pagedItems: any;
   search: string;
+  results: Object;
+  searchTerm$ = new Subject<string>();
+  providers: [SearchService];
 
-  constructor(private pagerService: PagerService, private httpConnect: HttpConnectionService) {
+  constructor(private pagerService: PagerService, private httpConnect: HttpConnectionService, private searchService: SearchService) {
+    this.searchService.search(this.searchTerm$)
+      .subscribe(data => {
+        console.log('result' + data);
+        this.postsList = data;
+        this.setPage(1);
+      });
   }
 
   allPost$: Observable<Array<Book>>;

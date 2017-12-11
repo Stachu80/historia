@@ -10,6 +10,8 @@ import {PagerService} from './services';
 import {SearchFilter} from 'ng4-pipes/src/app/pipes/searchFilter';
 import {FormsModule} from '@angular/forms';
 import {HttpConnectionService} from './services/http-connection.service';
+import {SearchService} from './services/search.service';
+import {HttpModule} from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,10 @@ import {HttpConnectionService} from './services/http-connection.service';
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpModule,
     FormsModule
   ],
-  providers: [PagerService, HttpConnectionService],
+  providers: [PagerService, HttpConnectionService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
