@@ -1,19 +1,20 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+import {PagerService} from '../services';
+import {CommunicationService} from '../services/communication.service';
 
 @Component({
   selector: 'app-bookself',
   templateUrl: './bookself.component.html',
   styleUrls: ['./bookself.component.css']
 })
-export class BookselfComponent implements OnInit {
+export class BookselfComponent {
 
-  constructor() {
+  booksOnPage: any;
+
+  constructor(private pagerService: PagerService, private communication: CommunicationService) {
+    this.communication.getBooksOnPageFromService().subscribe(data => {
+      this.booksOnPage = data;
+    });
   }
-
-  @Input()
-  bookPost;
-
-  ngOnInit() {
-  }
-
 }
+

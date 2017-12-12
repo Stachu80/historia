@@ -11,6 +11,8 @@ import {SearchFilter} from 'ng4-pipes/src/app/pipes/searchFilter';
 import {FormsModule} from '@angular/forms';
 import {SearchService} from './services/search.service';
 import {HttpModule} from '@angular/http';
+import {PaginationComponent} from './pagination/pagination.component';
+import {CommunicationService} from './services/communication.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import {HttpModule} from '@angular/http';
     HeaderComponent,
     FooterComponent,
     SearchFilter,
+    PaginationComponent,
 
   ],
   imports: [
@@ -27,7 +30,7 @@ import {HttpModule} from '@angular/http';
     HttpModule,
     FormsModule
   ],
-  providers: [PagerService, SearchService],
+  providers: [PagerService, SearchService, CommunicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
