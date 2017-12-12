@@ -9,7 +9,7 @@ import {CommunicationService} from '../services/communication.service';
 })
 export class BookselfComponent {
 
-  booksOnPage: any;
+  booksOnPage: Array<any> = [];
 
   constructor(private pagerService: PagerService, private communication: CommunicationService) {
     this.communication.getBooksOnPageFromService().subscribe(data => {

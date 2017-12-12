@@ -20,7 +20,6 @@ export class PaginationComponent {
     this.searchService.search(this.searchTerm$)
       .subscribe(data => {
         this.bookList = data;
-        console.log(data);
         this.setPage(1);
       });
 
@@ -39,7 +38,6 @@ export class PaginationComponent {
       this.pager = this.pagerService.getPager(this.bookList.length, page);
       this.booksOnPage = this.bookList.slice(this.pager.startIndex, this.pager.endIndex + 1);
       this.communication.sendBooksOnPageToService(this.booksOnPage);
-
     }
   }
 }

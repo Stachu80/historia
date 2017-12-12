@@ -3,9 +3,10 @@
   padding: 20px;
 }
 
-.container{
+.container {
   min-height: 500px;
 }
+
 .cover {
   margin: 5px;
 }
@@ -20,5 +21,18 @@
   border: #999 solid 1px;
   border-radius: 10px;
 
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.empty {
+
+  color: #dcdcdc;
+  font-family: "Trebuchet MS";
+  font-size: 60px;
+  margin-top: 170px;
 }
 
