@@ -20,6 +20,7 @@ export class PaginationComponent {
     this.searchService.search(this.searchTerm$)
       .subscribe(data => {
         this.bookList = data;
+        console.log(data)
         this.setPage(1);
       });
 
