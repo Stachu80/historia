@@ -2,16 +2,16 @@
   <div class="container">
     <div class="row">
       <ng-container *ngIf="booksOnPage.length > 0; else textInfo">
-        <div *ngFor="let post of booksOnPage; let i = index" class="col-md-4">
+        <div *ngFor="let book of booksOnPage; let i = index" class="col-md-4">
 
           <div class="book-card">
             <div class="cover">
-              <img class="card-img-top" src={{post.cover}} alt="">
+              <img class="card-img-top" src="{{book.cover}}" alt="">
             </div>
-            <h6 class="card-title">{{post.title}}</h6>
-            <p class="card-text">{{post.author}}</p>
-            <p class="card-text">{{post.isbn}}</p>
-            <a target="_blank" href={{post.url}} class="btn btn-primary">Przejdź do księgarni</a>
+            <h6 class="card-title">{{book.title}}</h6>
+            <p class="card-text">{{book.author}}</p>
+            <p class="card-text">{{book.isbn}}</p>
+            <a target="_blank" href={{book.url}} class="btn btn-primary">Przejdź do księgarni</a>
           </div>
         </div>
       </ng-container>
