@@ -11,10 +11,10 @@ import {CommunicationService} from '../services/communication.service';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent {
-  bookList: any;
-  pager: any = {};
-  booksOnPage: any;
-  searchTerm$ = new Subject<string>();
+  private bookList: any;
+  private pager: any = {};
+  private booksOnPage: any;
+  private searchTerm$ = new Subject<string>();
 
   constructor(private pagerService: PagerService, private searchService: SearchService, private communication: CommunicationService) {
     this.searchService.search(this.searchTerm$)

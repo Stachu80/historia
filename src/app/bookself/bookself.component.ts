@@ -11,7 +11,7 @@ export class BookselfComponent {
 
   booksOnPage: Array<any> = [];
 
-  constructor(private pagerService: PagerService, private communication: CommunicationService) {
+  constructor(private communication: CommunicationService) {
     this.communication.getBooksOnPageFromService().subscribe(data => {
       this.booksOnPage = data;
     });
