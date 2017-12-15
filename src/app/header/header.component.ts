@@ -1,8 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {SearchService} from '../services/search.service';
-import {PagerService} from '../services';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import {Component} from '@angular/core';
 import {CommunicationService} from '../services/communication.service';
 
 @Component({
@@ -11,14 +7,14 @@ import {CommunicationService} from '../services/communication.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  protected maxLength: Number = 12;
 
   constructor(private communication: CommunicationService) {
   }
 
   onNameKeyUp(event) {
-    if (event.target.length > 12) {
-      // event.target.length.
+    if (event.target.value.length > 3) {
+      this.communication.sendInputTextToService(event.target.value);
     }
-    this.communication.sendInputTextToService(event.target.value);
   }
 }

@@ -8,7 +8,7 @@
       <div class="col">
         <label>
           Wpisz tekst
-          <input type="text" (keyup)="onNameKeyUp($event)"/>
+          <input id="inputTxt" type="text" [maxLength]="maxLength" (keyup)="onNameKeyUp($event)"/>
         </label>
       </div>
     </div>
