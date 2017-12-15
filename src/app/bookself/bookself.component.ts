@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {PagerService} from '../services';
 import {CommunicationService} from '../services/communication.service';
 
 @Component({

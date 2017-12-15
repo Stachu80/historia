@@ -8,7 +8,7 @@ import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class SearchService {
-  baseUrl = 'https://gwo.pl/booksApi/v1/search?query=';
+  private baseUrl = 'https://gwo.pl/booksApi/v1/search?query=';
 
   constructor(private http: Http) {
   }

@@ -19,7 +19,11 @@ describe('BookselfComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  /*it('should render title in a h1 tag', async(() => {
+   // const fixture = TestBed.createComponent(BookselfComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('div').textContent).toContain('Welcome to app!');
+  }));*/
+
 });
