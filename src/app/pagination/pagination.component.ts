@@ -12,8 +12,8 @@ import {CommunicationService} from '../services/communication.service';
 })
 export class PaginationComponent {
   private bookList: any;
-  private pager: any = {};
-  private booksOnPage: any;
+  protected pager: any = {};
+  protected booksOnPage: any;
   private searchTerm$ = new Subject<string>();
 
   constructor(private pagerService: PagerService, private searchService: SearchService, private communication: CommunicationService) {
@@ -25,9 +25,7 @@ export class PaginationComponent {
       });
 
     this.communication.getInputTextFromService().subscribe(data => {
-      if (data.length > 2) {
-        this.searchTerm$.next(data);
-      }
+      this.searchTerm$.next(data);
     });
   }
 

@@ -16,6 +16,9 @@ export class HeaderComponent {
   }
 
   onNameKeyUp(event) {
+    if (event.target.length > 12) {
+      // event.target.length.
+    }
     this.communication.sendInputTextToService(event.target.value);
   }
 }

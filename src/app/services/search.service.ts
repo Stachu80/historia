@@ -1,3 +1,4 @@
+///<reference path="../../../node_modules/@angular/http/src/http.d.ts"/>
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
@@ -17,9 +18,9 @@ export class SearchService {
     return terms.debounceTime(400).distinctUntilChanged().switchMap(term => this.searchEntries(term));
   }
 
-  searchEntries(term) {
-    return this.http
-      .get(this.baseUrl + term)
+  searchEntries(term: string) {
+    console.log(term);
+    return this.http.get(this.baseUrl + term)
       .map(res => res.json());
   }
 }
