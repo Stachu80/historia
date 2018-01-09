@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommunicationService} from '../services/communication.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-bookself',
@@ -7,13 +8,13 @@ import {CommunicationService} from '../services/communication.service';
   styleUrls: ['./bookself.component.css']
 })
 export class BookselfComponent {
-
-  protected booksOnPage: Array<any> = [];
+  booksOnPage: Observable<any>;
 
   constructor(private communication: CommunicationService) {
-    this.communication.getBooksOnPageFromService().subscribe(data => {
+    /*this.communication.getBooksOnPageFromService().subscribe(data => {
       this.booksOnPage = data;
-    });
+    });*/
+    this.booksOnPage = this.communication.getBooksOnPageFromService();
   }
 }
 

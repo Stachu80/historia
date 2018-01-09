@@ -19,7 +19,6 @@ export class SearchService {
   }
 
   searchEntries(term: string) {
-    console.log(term);
     return this.http.get(this.baseUrl + term)
       .map(res => res.json());
   }

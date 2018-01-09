@@ -13,8 +13,6 @@ export class HeaderComponent {
   }
 
   onNameKeyUp(event) {
-    if (event.target.value.length > 2) {
-      this.communication.sendInputTextToService(event.target.value);
-    }
+    this.communication.sendInputTextToService(event.target.value);
   }
 }

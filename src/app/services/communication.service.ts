@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class CommunicationService {
+
   private inputText = new Subject<string>();
   private booksOnPage = new Subject<any>();
 

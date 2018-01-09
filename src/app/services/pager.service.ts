@@ -14,7 +14,7 @@ export class PagerService {
       if (currentPage <= 6) {
         startPage = 1;
         endPage = 10;
-      } else if (currentPage + 4 >= totalPages) {
+      } else if (currentPage + 4 > totalPages) {
         startPage = totalPages - 9;
         endPage = totalPages;
       } else {
